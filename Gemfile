@@ -31,8 +31,10 @@ group :development, :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
   gem 'sqlite3-ruby', :require => 'sqlite3'
+  ## comment for heroku then: bundle exec rake assets:precompile
   gem 'rspec-rails', '2.0.1'
   gem 'rspec', '2.0.1'
+  ## end
   gem 'webrat', '0.7.1'
   gem 'spork', '0.8.4'
   gem 'rake', '0.8.7'
