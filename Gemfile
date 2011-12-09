@@ -37,7 +37,7 @@ group :development, :test do
   ## end
   gem 'webrat', '0.7.1'
   gem 'spork', '0.8.4'
-  gem 'rake', '0.9.2.2'
+  gem 'rake', '0.8.7'
   gem 'annotate', '2.4.0'
 end
 
