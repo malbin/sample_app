@@ -33,8 +33,8 @@ group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'gravatar_image_tag', '1.0.0.pre2'
   ## comment for heroku then: bundle exec rake assets:precompile
-  #gem 'rspec-rails', '2.0.1'
-  #gem 'rspec', '2.0.1'
+  gem 'rspec-rails', '2.0.1'
+  gem 'rspec', '2.0.1'
   ## end
   gem 'webrat', '0.7.1'
   gem 'spork', '0.8.4'
