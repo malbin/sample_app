@@ -31,6 +31,7 @@ group :development, :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
   gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'gravatar_image_tag', '1.0.0.pre2'
   ## comment for heroku then: bundle exec rake assets:precompile
   gem 'rspec-rails', '2.0.1'
   gem 'rspec', '2.0.1'
@@ -39,6 +40,7 @@ group :development, :test do
   gem 'spork', '0.8.4'
   gem 'rake', '0.8.7'
   gem 'annotate', '2.4.0'
+  gem 'factory_girl_rails', '1.0'
 end
 
 group :production do
