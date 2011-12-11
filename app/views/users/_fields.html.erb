@@ -1,7 +1,4 @@
-<h1>Edit user</h1>
-
-<%= form_for(@user) do |f| %>
-    <%= render 'shared/error_messages', :object => f.object %>
+<%= render 'shared/error_messages', :object => f.object %>
     <div class="field">
         <%= f.label :name %><br />
         <%= f.text_field :name %>
@@ -18,12 +15,3 @@
         <%= f.label :password_confirmation %><br />
         <%= f.password_field :password_confirmation %>
     </div>
-    <div class="submit">
-        <%= f.submit "Update" %>
-    </div>
-<% end %>
-
-<div>
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails" target=_BLANK>change</a>
-</div>

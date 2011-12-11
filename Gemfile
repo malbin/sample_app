@@ -35,8 +35,8 @@ group :development, :test do
   gem 'gravatar_image_tag', '1.0.0.pre2'
   gem 'faker', '0.3.1'
   ## comment for heroku then: bundle exec rake assets:precompile
-  #gem 'rspec-rails', '2.0.1'
-  #gem 'rspec', '2.0.1'
+  gem 'rspec-rails', '2.0.1'
+  gem 'rspec', '2.0.1'
   ## end
   gem 'webrat', '0.7.1'
   gem 'spork', '0.8.4'

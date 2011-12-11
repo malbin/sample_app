@@ -66,6 +66,18 @@ describe UsersController do
         get :new
         response.should have_selector("input[name='user[password_confirmation]'][type='password']")
     end
+
+    describe "for signed-in users" do
+        
+        before(:each) do
+            @user = test_sign_in(Factory(:user))
+        end
+        it "should redirect to root_path" do
+            get :new
+            response.should redirect_to(root_path)
+        end
+    end
+
   end
 
   describe "POST 'create'" do
@@ -91,6 +103,26 @@ describe UsersController do
           it "should render the 'new' page" do
               post :create, :user => @attr
               response.should render_template('new')
+          end
+
+          describe "for signed-in users" do
+              
+              before(:each) do
+                  @user = test_sign_in(Factory(:user))
+                  @attr = { :name => "Blake Friedman", :email => "blake@example.org",
+                            :password => "foobar", :password_confirmation => "foobar" }
+              end
+
+              it "should not create a new user" do
+                  lambda do
+                      post :create, :user => @attr
+                  end.should_not change(User, :count)
+              end
+
+              it "should redirect to root_path" do
+                  post :create, :user => @attr
+                  response.should redirect_to(root_path)
+              end
           end
       end
 
@@ -292,6 +324,28 @@ describe UsersController do
                   response.should have_selector("li", :content => user.name)
               end
           end
+
+          it "should not have a delete link" do
+              get :index
+              @users.each do |user|
+                  response.should_not have_selector("a", :href => "/users/1",
+                                                         :content => "Delete")
+              end
+          end
+      end
+
+      describe "for signed in admin users" do
+
+          before(:each) do
+              admin = Factory(:user, :email => "admin@example.com", :admin => true)
+              test_sign_in(admin)
+          end
+
+          it "should have delete links" do
+              get :index
+              response.should have_selector("a", :href => "/users/1",
+                                                 :content => "delete")
+          end
       end
   end
 
@@ -332,6 +386,14 @@ describe UsersController do
           it "should redirect to the users page" do
               delete :destroy, :id => @user
               response.should redirect_to(users_path)
+          end
+
+          it "should not destroy the admin user" do
+              admin = Factory(:user, :email => "admin2@example.com", :admin => true)
+              test_sign_in(admin)
+              lambda do
+                  delete :destroy, :id => admin
+              end.should_not change(User, :count).by(-1)
           end
       end
   end

@@ -14,11 +14,18 @@ class UsersController < ApplicationController
    end
 
    def new
-      @user = User.new
-      @title = "Sign up"
+      if signed_in?
+          redirect_to root_path
+      else
+        @user = User.new
+        @title = "Sign up"
+      end
    end
 
    def create
+    if signed_in?
+      redirect_to root_path
+    else
       @user = User.new(params[:user])
       if @user.save
           sign_in @user
@@ -30,6 +37,7 @@ class UsersController < ApplicationController
          @title = "Sign up"
          render 'new'
       end
+    end
    end
 
    def edit
@@ -47,13 +55,16 @@ class UsersController < ApplicationController
    end
 
    def destroy
-       User.find(params[:id]).destroy
-       flash[:success] = "User destroyed."
+       user = User.find(params[:id])
+       unless current_user?(user)
+           user.destroy
+           flash[:success] = "User destroyed."
+       end
        redirect_to users_path
    end
 
    private
-        
+
         def authenticate
             deny_access unless signed_in?
         end
