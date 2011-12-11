@@ -11,6 +11,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'will_paginate', '3.0.pre2'
 end
 
 gem 'jquery-rails'
@@ -32,9 +33,10 @@ group :development, :test do
   gem 'turn', '0.8.2', :require => false
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'gravatar_image_tag', '1.0.0.pre2'
+  gem 'faker', '0.3.1'
   ## comment for heroku then: bundle exec rake assets:precompile
-  gem 'rspec-rails', '2.0.1'
-  gem 'rspec', '2.0.1'
+  #gem 'rspec-rails', '2.0.1'
+  #gem 'rspec', '2.0.1'
   ## end
   gem 'webrat', '0.7.1'
   gem 'spork', '0.8.4'
@@ -46,4 +48,5 @@ end
 group :production do
  gem 'pg'
  gem 'gravatar_image_tag', '1.0.0.pre2'
+ gem 'will_paginate', '3.0.pre2'
 end
